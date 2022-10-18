@@ -54,6 +54,7 @@ class HomePostVM: HomePostVMProtocol {
         .subscribe { [weak self] vms in
             guard let self = self, let vms = vms else { return }
             self.postCellVMs.accept(vms)
+            self.viewState.onNext(.finish)
         } onFailure: { [weak self] error in
             self?.viewState.onNext(.errorMessage(error.localizedDescription))
         }.disposed(by: self.disposeBag)
