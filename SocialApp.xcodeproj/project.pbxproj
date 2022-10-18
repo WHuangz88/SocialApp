@@ -11,8 +11,10 @@
 		3514567A28FEA44F00CEB5CE /* NetworkConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3514567928FEA44F00CEB5CE /* NetworkConfig.swift */; };
 		3514567C28FEA46100CEB5CE /* APIDataProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3514567B28FEA46100CEB5CE /* APIDataProtocol.swift */; };
 		3514568028FEA71400CEB5CE /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3514567F28FEA71400CEB5CE /* NetworkError.swift */; };
-		3514569628FEB17200CEB5CE /* PostAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3514569528FEB17200CEB5CE /* PostAPI.swift */; };
+		3514569628FEB17200CEB5CE /* HomePostAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3514569528FEB17200CEB5CE /* HomePostAPI.swift */; };
 		3514569828FEB2C200CEB5CE /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3514569728FEB2C200CEB5CE /* NetworkManager.swift */; };
+		351456AE28FEB56F00CEB5CE /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351456AD28FEB56F00CEB5CE /* PostModel.swift */; };
+		351456B028FEB57600CEB5CE /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351456AF28FEB57600CEB5CE /* UserModel.swift */; };
 		3515CC1128FE783A00650FD4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3515CC1028FE783A00650FD4 /* AppDelegate.swift */; };
 		3515CC1328FE783A00650FD4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3515CC1228FE783A00650FD4 /* SceneDelegate.swift */; };
 		3515CC1528FE783A00650FD4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3515CC1428FE783A00650FD4 /* ViewController.swift */; };
@@ -46,8 +48,10 @@
 		3514567928FEA44F00CEB5CE /* NetworkConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConfig.swift; sourceTree = "<group>"; };
 		3514567B28FEA46100CEB5CE /* APIDataProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIDataProtocol.swift; sourceTree = "<group>"; };
 		3514567F28FEA71400CEB5CE /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
-		3514569528FEB17200CEB5CE /* PostAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostAPI.swift; sourceTree = "<group>"; };
+		3514569528FEB17200CEB5CE /* HomePostAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePostAPI.swift; sourceTree = "<group>"; };
 		3514569728FEB2C200CEB5CE /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		351456AD28FEB56F00CEB5CE /* PostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
+		351456AF28FEB57600CEB5CE /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		3515CC0D28FE783A00650FD4 /* SocialApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SocialApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3515CC1028FE783A00650FD4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3515CC1228FE783A00650FD4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -111,9 +115,19 @@
 		3514569428FEB16A00CEB5CE /* HomePost Feature */ = {
 			isa = PBXGroup;
 			children = (
-				3514569528FEB17200CEB5CE /* PostAPI.swift */,
+				351456AC28FEB56300CEB5CE /* Model */,
+				3514569528FEB17200CEB5CE /* HomePostAPI.swift */,
 			);
 			path = "HomePost Feature";
+			sourceTree = "<group>";
+		};
+		351456AC28FEB56300CEB5CE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				351456AD28FEB56F00CEB5CE /* PostModel.swift */,
+				351456AF28FEB57600CEB5CE /* UserModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		3515CC0428FE783A00650FD4 = {
@@ -301,14 +315,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				3514569828FEB2C200CEB5CE /* NetworkManager.swift in Sources */,
+				351456AE28FEB56F00CEB5CE /* PostModel.swift in Sources */,
 				3515CC1528FE783A00650FD4 /* ViewController.swift in Sources */,
 				3514568028FEA71400CEB5CE /* NetworkError.swift in Sources */,
 				3514567A28FEA44F00CEB5CE /* NetworkConfig.swift in Sources */,
-				3514569628FEB17200CEB5CE /* PostAPI.swift in Sources */,
+				3514569628FEB17200CEB5CE /* HomePostAPI.swift in Sources */,
 				3514567C28FEA46100CEB5CE /* APIDataProtocol.swift in Sources */,
 				3515CC1128FE783A00650FD4 /* AppDelegate.swift in Sources */,
 				3514567828FEA3FF00CEB5CE /* NetworkServices.swift in Sources */,
 				3515CC1328FE783A00650FD4 /* SceneDelegate.swift in Sources */,
+				351456B028FEB57600CEB5CE /* UserModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
