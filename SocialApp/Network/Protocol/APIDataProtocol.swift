@@ -30,4 +30,8 @@ extension APIData {
     var absolutePath: String {
         base + path
     }
+
+    var dataType: ResponseDataType {
+        .JSON
+    }
 }
