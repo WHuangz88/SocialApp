@@ -20,6 +20,13 @@ protocol APIData {
 }
 
 extension APIData {
+
+    var headers: [String: String]? {
+        let headers = [
+            HTTPHeaderKeys.contentType.rawValue: HeaderContentType.json.rawValue,
+        ]
+        return headers
+    }
     var absolutePath: String {
         base + path
     }
