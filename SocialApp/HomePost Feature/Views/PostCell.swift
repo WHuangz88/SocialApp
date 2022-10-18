@@ -10,7 +10,7 @@ import UIKit
 class PostCell: UITableViewCell {
 
     private lazy var separator = LineSeparator()
-    private lazy var card = PostContentCard(config: .init(contentLines: 2))
+    private lazy var card = PostContentCard()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -28,8 +28,12 @@ class PostCell: UITableViewCell {
         setupConstraint()
     }
 
-    func bindData(ownerName: String, date: String, content: String) {
-        self.card.configure(ownerName: ownerName, date: date, content: content)
+    func bindData(vm: PostCellVM) {
+        self.card.configure(config: .init(contentLines: 2,
+                                          ownerName: vm.name,
+                                          date: vm.date,
+                                          profilePic: vm.profilePic,
+                                          content: vm.content))
     }
 
     private func setupConstraint() {
@@ -44,3 +48,9 @@ class PostCell: UITableViewCell {
     }
 }
 
+struct PostCellVM {
+    let name: String
+    let date: String
+    let content: String
+    let profilePic: String
+}

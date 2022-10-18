@@ -6,11 +6,11 @@
 //
 
 import Foundation
+import RxSwift
 
 protocol NetworkService {
     func request<T: Decodable>(request: APIData,
-                               type: T.Type,
-                               completion: @escaping (Result<T, NetworkError>) -> Void)
+                               type: T.Type) -> Single<T>
 }
 
 final class URLSessionNetworkService: NetworkService {
@@ -22,35 +22,39 @@ final class URLSessionNetworkService: NetworkService {
     }
 
     func request<T: Decodable>(request: APIData,
-                               type: T.Type,
-                               completion: @escaping (Result<T, NetworkError>) -> Void) {
-        self.authManager.startRequest(request: request) { (data, response, error) in
+                               type: T.Type) -> Single<T> {
+        return Single<T>.create { observer -> Disposable in
 
-            if let _ = error{
-                let errorType = NetworkError.failed
-                completion(.failure(errorType))
-                return
-            }
+            self.authManager.startRequest(request: request) { (data, response, error) in
 
-            guard let responseData = response as? HTTPURLResponse,
-                  let receivedData = data else{
-                let errorType = NetworkError.noResponseData
-                completion(.failure(errorType))
-                return
-            }
-
-            let responseStatus = self.isValidResposne(response: responseData)
-            switch responseStatus {
-            case .success:
-                let jsonDecoder = JSONDecoder()
-                do {
-                    let apiResponseModel = try jsonDecoder.decode(T.self, from: receivedData)
-                    completion(.success(apiResponseModel))
-                } catch {
-                    completion(.failure(NetworkError.unableToDecodeResponseData(errorDescription: error.localizedDescription)))
+                if let _ = error{
+                    let errorType = NetworkError.failed
+                    observer(.failure(errorType))
                 }
-            case .failure(let error):
-                completion(.failure(error))
+
+                guard let responseData = response as? HTTPURLResponse,
+                      let receivedData = data else{
+                    let errorType = NetworkError.noResponseData
+                    observer(.failure(errorType))
+                    return
+                }
+
+                let responseStatus = self.isValidResposne(response: responseData)
+                switch responseStatus {
+                case .success:
+                    let jsonDecoder = JSONDecoder()
+                    do {
+                        let apiResponseModel = try jsonDecoder.decode(T.self, from: receivedData)
+                        observer(.success(apiResponseModel))
+                    } catch {
+                        observer(.failure(NetworkError.unableToDecodeResponseData(errorDescription: error.localizedDescription)))
+                    }
+                case .failure(let error):
+                    observer(.failure(error))
+                }
+            }
+            return Disposables.create {
+                self.authManager.cancel()
             }
         }
     }

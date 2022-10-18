@@ -9,6 +9,7 @@ import Foundation
 
 protocol NetworkManagerProtocol {
     func startRequest(request: APIData, completion: @escaping (_ data: Data?, _ response: URLResponse?, _ error: Error?) -> Void)
+    func cancel()
 }
 
 class NetworkManager: NetworkManagerProtocol {
@@ -30,6 +31,10 @@ class NetworkManager: NetworkManagerProtocol {
         } catch {
             completion(nil, nil, error)
         }
+    }
+
+    func cancel() {
+        self.task?.cancel()
     }
 }
 

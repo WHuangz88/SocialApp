@@ -7,9 +7,14 @@
 
 import SnapKit
 import UIKit
+import SDWebImage
 
 struct PostHeaderConfig {
     let contentLines: Int
+    let ownerName: String
+    let date: String
+    let profilePic: String
+    let content: String
 }
 
 class PostContentCard: UIView {
@@ -37,7 +42,7 @@ class PostContentCard: UIView {
         $0.font = UIFont.systemFont(ofSize: 12)
         $0.textColor = UIColor.black
         $0.textAlignment = .left
-        $0.numberOfLines = config.contentLines
+        $0.numberOfLines = 2
     }
 
     private lazy var stackView = VStack {
@@ -58,10 +63,7 @@ class PostContentCard: UIView {
     .setSpacing(8)
     .setDistribution(.fill)
 
-    let config: PostHeaderConfig
-
-    init(config: PostHeaderConfig) {
-        self.config = config
+    init() {
         super.init(frame: .zero)
         setupUI()
     }
@@ -74,10 +76,14 @@ class PostContentCard: UIView {
         }
     }
 
-    func configure(ownerName: String, date: String, content: String) {
-        self.ownerLbl.text = ownerName
-        self.dateLbl.text = date.convertDate(toFormat: .normal)
-        self.contentLbl.text = content
+    func configure(config: PostHeaderConfig) {
+        self.ownerLbl.text = config.ownerName
+        self.dateLbl.text = config.date.convertDate(toFormat: .normal)
+        self.contentLbl.text = config.content
+        self.contentLbl.numberOfLines = config.contentLines
+        self.iconView.sd_setImage(with: URL(string: config.profilePic)) { [iconView] _,_,_,_ in
+            iconView.backgroundColor = .clear
+        }
     }
 
     required init?(coder: NSCoder) {

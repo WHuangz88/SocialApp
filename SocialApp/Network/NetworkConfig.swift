@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum HTTPMethod: String {
+enum HTTPMethod: String {
     case get
     case post
     case put
@@ -15,12 +15,12 @@ public enum HTTPMethod: String {
     case patch
 }
 
-public enum ResponseDataType {
+enum ResponseDataType {
     case Data
     case JSON
 }
 
-public enum Encoding: String {
+enum Encoding: String {
     case URL
     case JSON
 }
@@ -33,7 +33,7 @@ enum HTTPHeaderKeys: String {
     case contentType = "Content-Type"
 }
 
-public struct RequestParams {
+struct RequestParams {
     let urlParameters: [String: String]?
     let bodyParameters: [String: Any]?
     let contentType: HeaderContentType
@@ -46,4 +46,31 @@ public struct RequestParams {
         self.contentType = contentType
     }
 }
+
+struct PagingRequest {
+    var page: Int
+    var pageSize: Int
+
+    init(page: Int = 0,
+                pageSize: Int = 20) {
+        self.page = page
+        self.pageSize = pageSize
+    }
+    func isFirstPage() -> Bool {
+        return page == 1
+    }
+
+    func isMaxPage() -> Bool {
+        self.page == pageSize
+    }
+
+    mutating func loadNextPage() {
+        self.page += 1
+    }
+
+    mutating func resetPage() {
+        self.page = 1
+    }
+}
+
 

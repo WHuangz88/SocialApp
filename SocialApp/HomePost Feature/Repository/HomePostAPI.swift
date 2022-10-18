@@ -13,7 +13,7 @@ enum HomePostAPI: APIData {
     case fetchUsers
 
     var base: String {
-        return "3fc7b134-bc49-4118-a5bc-82472c90a981.mock.pstmn.io"
+        return "https://3fc7b134-bc49-4118-a5bc-82472c90a981.mock.pstmn.io"
     }
 
     var path: String {

@@ -35,6 +35,7 @@ class HomePostVC: BaseVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        self.viewModel.initialLoad()
     }
 
     private func setupUI() {
@@ -45,20 +46,31 @@ class HomePostVC: BaseVC {
 
     private func setupConstraints() {
         tableView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+            $0.edges.equalTo(view.safeAreaLayoutGuide)
         }
     }
 
     private func setupEvents() {
         self.refreshControl.rx.controlEvent(.valueChanged)
             .subscribe({ [weak self] _ in
-                // reload
+                self?.viewModel.reload()
             })
             .disposed(by: disposeBag)
 
-        let section = Observable.just([1,2,3,4,5,6]).map { (data) -> TableSectionViewModelProtocol in
-            return TableSectionViewModel(entries: data) { (_, data, cell: PostCell) in
-                cell.bindData(ownerName: "Test \(data)", date: "2022-08-07T17:36:58.516Z", content: "abc")
+        self.viewModel.viewState.subscribe(onNext: { [weak self] state in
+            self?.refreshControl.endRefreshing()
+            switch state {
+            case.errorMessage(let msg):
+                // TODO: Handle Toast Message
+                print(msg ?? "")
+            default:
+                break
+            }
+        }).disposed(by: self.disposeBag)
+
+        let section = self.viewModel.postCellVMs.map { (data) -> TableSectionViewModelProtocol in
+            return TableSectionViewModel(entries: data) { (_, vm, cell: PostCell) in
+                cell.bindData(vm: vm)
             } onSelect: { _, data in
 
             }.asProtocol
@@ -66,6 +78,12 @@ class HomePostVC: BaseVC {
 
         tableView.rx.items(section: section)
             .disposed(by: disposeBag)
+
+        tableView.rx.willDisplayCell
+            .subscribe(onNext: { [weak self] in
+                self?.viewModel.canLoadMore(index: $0.indexPath.row)
+            })
+            .disposed(by: self.disposeBag)
 
         tableView.rx.setDelegate(self)
             .disposed(by: self.disposeBag)
