@@ -10,7 +10,7 @@ import Foundation
 protocol NetworkService {
     func request<T: Decodable>(request: APIData,
                                type: T.Type,
-                               completion: @escaping (Result<T, Error>) -> Void)
+                               completion: @escaping (Result<T, NetworkError>) -> Void)
 }
 
 final class URLSessionNetworkService: NetworkService {
@@ -23,7 +23,7 @@ final class URLSessionNetworkService: NetworkService {
 
     func request<T: Decodable>(request: APIData,
                                type: T.Type,
-                               completion: @escaping (Result<T, Error>) -> Void) {
+                               completion: @escaping (Result<T, NetworkError>) -> Void) {
         self.authManager.startRequest(request: request) { (data, response, error) in
 
             if let _ = error{

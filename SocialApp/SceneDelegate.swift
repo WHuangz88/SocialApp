@@ -9,14 +9,34 @@ import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
-    var window: UIWindow?
+    /// Initiate View, Storyboard replacement
+    private let navigationController: UINavigationController = {
+        let navigationController = UINavigationController(rootViewController: HomePostVC())
+        navigationController.navigationBar.isTranslucent = false
+        return navigationController
+    }()
 
+    var window : UIWindow?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        guard let _ = (scene as? UIWindowScene) else { return }
+        guard let windowScene = (scene as? UIWindowScene) else { return }
+
+        // Mark: iOS 15 tableview issues
+        if #available(iOS 15.0, *) {
+            UITableView.appearance().sectionHeaderTopPadding = CGFloat(0)
+            UITableView.appearance().tableHeaderView = UIView.init(frame: .init(x: 0,
+                                                                                y: 0,
+                                                                                width: 0,
+                                                                                height: CGFloat.leastNormalMagnitude))
+        }
+
+        self.window = UIWindow(windowScene: windowScene)
+
+        self.window?.rootViewController = navigationController
+        self.window?.makeKeyAndVisible()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
