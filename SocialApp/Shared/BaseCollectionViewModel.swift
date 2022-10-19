@@ -7,6 +7,7 @@
 
 import UIKit
 
+/// CollectionView DS Wrappers
 class BaseCollectionItemViewModel<Data>: NSObject,
                                          UICollectionViewDelegate,
                                          UICollectionViewDataSource {
@@ -34,6 +35,7 @@ class BaseCollectionItemViewModel<Data>: NSObject,
         self.onSelect = onSelect
     }
 
+    /// Update data when have changes in the original data, and make sure to reload the collectionview 
     func updateData(_ data: [Data]) {
         self.data = data
     }

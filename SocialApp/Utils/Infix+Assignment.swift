@@ -7,6 +7,8 @@
 
 import Foundation
 
+///Syntactic sugar when writing new property components in Swift
+
 infix operator ~!~ : AssignmentPrecedence
 
 public func ~!~<T: AnyObject>(left: T, right: (T) -> Void) -> T {

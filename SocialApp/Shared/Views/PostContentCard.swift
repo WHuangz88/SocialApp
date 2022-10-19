@@ -82,7 +82,7 @@ class PostContentCard: UIView {
                 .inset(8)
         }
     }
-
+    // To use PostContentCard make sure to use the config provided by the view
     func configure(config: PostHeaderConfig) {
         self.ownerLbl.text = config.ownerName
         self.dateLbl.text = config.date.convertDate(toFormat: .normal)

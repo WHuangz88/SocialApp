@@ -14,6 +14,7 @@ public struct StackBuilder {
     }
 }
 
+/// Set of rules VStack / HStack adopt
 public protocol StackModifier {
     associatedtype Stack: UIStackView
     func setAlignment(_ alignment: UIStackView.Alignment) -> Stack
@@ -21,6 +22,7 @@ public protocol StackModifier {
     func setSpacing(_ spacing: CGFloat) -> Stack
 }
 
+/// SwiftUI way to leverage UIStackView 
 public final class VStack: UIStackView {
 
     public init(@StackBuilder views: () -> [UIView]) {

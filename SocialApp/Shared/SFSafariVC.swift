@@ -9,6 +9,7 @@ import UIKit
 import SafariServices
 import WebKit
 
+/// Reuse SafariViewController
 class SFSafariVC: SFSafariViewController {
 
     override init(url: URL,
