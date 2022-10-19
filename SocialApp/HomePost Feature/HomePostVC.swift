@@ -9,7 +9,11 @@ import UIKit
 import RxSwift
 
 class HomePostVC: BaseVC {
-    lazy var searchBar: SearchComponent = SearchComponent()
+    lazy var searchBar: SearchComponent = SearchComponent() ~!~ {
+        $0.searchResult = { [unowned self] result in
+            self.viewModel.filter(result)
+        }
+    }
 
     private lazy var refreshControl = UIRefreshControl() ~!~ {
         $0.tintColor = .black
@@ -74,7 +78,7 @@ class HomePostVC: BaseVC {
             }
         }).disposed(by: self.disposeBag)
 
-        let section = self.viewModel.postCellVMs.map { (data) -> TableSectionViewModelProtocol in
+        let section = self.viewModel.postCellVMs.asObservable().map { (data) -> TableSectionViewModelProtocol in
             return TableSectionViewModel(entries: data) { [weak self] (_, vm, cell: PostCell) in
                 cell.bindData(vm: vm)
                 cell.openInAppBrowser = { [weak self] url in

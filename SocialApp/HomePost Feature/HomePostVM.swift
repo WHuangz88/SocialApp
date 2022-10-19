@@ -16,6 +16,7 @@ protocol HomePostVMProtocol {
 
     func initialLoad()
     func reload()
+    func filter(_ search: String)
     func fetchPosts()
     func canLoadMore(index: Int)
 }
@@ -23,10 +24,12 @@ protocol HomePostVMProtocol {
 class HomePostVM: HomePostVMProtocol {
 
     // Views Binding
+    var originalPosts = [PostDetail]()
     var postCellVMs: BehaviorRelay<[PostDetail]> = .init(value: [])
     var viewState: PublishSubject<UIViewState> = .init()
     var users: Users = []
-    
+
+    private var isSearching: Bool = false
     private var pageRequest: PagingRequest = .init()
     private var disposeBag = DisposeBag()
 
@@ -55,6 +58,8 @@ class HomePostVM: HomePostVMProtocol {
         .subscribe { [weak self] vms in
             guard let self = self, let vms = vms else { return }
             self.postCellVMs.accept(vms)
+            self.originalPosts = vms
+
             self.viewState.onNext(.finish)
         } onFailure: { [weak self] error in
             self?.viewState.onNext(.errorMessage(error.localizedDescription))
@@ -76,17 +81,45 @@ class HomePostVM: HomePostVMProtocol {
                 curr.append(contentsOf: postItems)
                 self.postCellVMs.accept(curr)
             }
+            self.originalPosts = self.postCellVMs.value
         } onFailure: { [weak self] error in
             self?.viewState.onNext(.errorMessage(error.localizedDescription))
         }.disposed(by: self.disposeBag)
     }
 
     func canLoadMore(index: Int) {
-        guard index == postCellVMs.value.count - 1 && !pageRequest.isMaxPage() else {
+        guard index == postCellVMs.value.count - 1
+                && !pageRequest.isMaxPage()
+                && !isSearching
+        else {
             return
         }
         self.pageRequest.loadNextPage()
         self.fetchPosts()
+    }
+
+    func filter(_ search: String) {
+        if !search.isEmpty && search.split(separator: " ").count < 2 {
+            self.isSearching = true
+            let filteredByOwner = self.originalPosts.filter {
+                let names: [String] = $0.name.split(separator: " ").map { String($0.lowercased()) }
+                return names.contains(search.lowercased())
+            }
+
+            if !filteredByOwner.isEmpty {
+                self.postCellVMs.accept(filteredByOwner)
+            } else {
+                let filteredByContent = self.originalPosts.filter {
+                    return $0.textContent.lowercased().contains(search.lowercased())
+                }
+                if !filteredByContent.isEmpty {
+                    self.postCellVMs.accept(filteredByContent)
+                }
+            }
+        } else if isSearching {
+            self.isSearching = false
+            self.postCellVMs.accept(originalPosts)
+        }
     }
 
     /// Object Mapper

@@ -52,12 +52,13 @@ struct PagingRequest {
     var pageSize: Int
 
     init(page: Int = 0,
-                pageSize: Int = 20) {
+         pageSize: Int = 20) {
         self.page = page
         self.pageSize = pageSize
     }
+    // first page starts from 0
     func isFirstPage() -> Bool {
-        return page == 1
+        return page == 0
     }
 
     func isMaxPage() -> Bool {
