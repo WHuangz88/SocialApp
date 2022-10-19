@@ -22,6 +22,19 @@ struct Post: Decodable {
         case createdDate, textContent, mediaContentPath
         case tagIDS = "tagIds"
     }
+
+    static let mocks: [Self] = [
+        .init(id: "post-1", position: 1, ownerID: "user-2",
+              createdDate: "2022-07-18T17:36:58.516Z",
+              textContent: "test content",
+              mediaContentPath: "mediaContent",
+              tagIDS: ["user-1", "user-3"]),
+        .init(id: "post-2", position: 1, ownerID: "user-1",
+              createdDate: "2022-07-18T17:36:58.516Z",
+              textContent: "test content",
+              mediaContentPath: "mediaContent",
+              tagIDS: ["user-2", "user-3"])
+    ]
 }
 
 

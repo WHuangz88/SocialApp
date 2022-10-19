@@ -51,6 +51,11 @@
 		3515CC2828FE783F00650FD4 /* SocialAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3515CC2728FE783F00650FD4 /* SocialAppTests.swift */; };
 		3515CC3228FE783F00650FD4 /* SocialAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3515CC3128FE783F00650FD4 /* SocialAppUITests.swift */; };
 		3515CC3428FE783F00650FD4 /* SocialAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3515CC3328FE783F00650FD4 /* SocialAppUITestsLaunchTests.swift */; };
+		354AD66929001564009851E7 /* HomeRepoStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354AD66829001564009851E7 /* HomeRepoStub.swift */; };
+		354AD66B29001784009851E7 /* HomeRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354AD66A29001784009851E7 /* HomeRepo.swift */; };
+		354AD66D29001A67009851E7 /* NetworkManagerSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354AD66C29001A67009851E7 /* NetworkManagerSpy.swift */; };
+		354AD66F29001BCF009851E7 /* Mock.json in Resources */ = {isa = PBXBuildFile; fileRef = 354AD66E29001BCF009851E7 /* Mock.json */; };
+		354AD67129001D99009851E7 /* NetworkServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354AD67029001D99009851E7 /* NetworkServiceTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -115,6 +120,11 @@
 		3515CC2D28FE783F00650FD4 /* SocialAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SocialAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3515CC3128FE783F00650FD4 /* SocialAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialAppUITests.swift; sourceTree = "<group>"; };
 		3515CC3328FE783F00650FD4 /* SocialAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		354AD66829001564009851E7 /* HomeRepoStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRepoStub.swift; sourceTree = "<group>"; };
+		354AD66A29001784009851E7 /* HomeRepo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRepo.swift; sourceTree = "<group>"; };
+		354AD66C29001A67009851E7 /* NetworkManagerSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerSpy.swift; sourceTree = "<group>"; };
+		354AD66E29001BCF009851E7 /* Mock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Mock.json; sourceTree = "<group>"; };
+		354AD67029001D99009851E7 /* NetworkServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -213,6 +223,7 @@
 			isa = PBXGroup;
 			children = (
 				3514569528FEB17200CEB5CE /* HomePostAPI.swift */,
+				354AD66A29001784009851E7 /* HomeRepo.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -374,6 +385,8 @@
 		3515CC2628FE783F00650FD4 /* SocialAppTests */ = {
 			isa = PBXGroup;
 			children = (
+				354AD66529001463009851E7 /* HomePost Feature */,
+				354AD64F29001153009851E7 /* Network */,
 				3515CC2728FE783F00650FD4 /* SocialAppTests.swift */,
 			);
 			path = SocialAppTests;
@@ -386,6 +399,24 @@
 				3515CC3328FE783F00650FD4 /* SocialAppUITestsLaunchTests.swift */,
 			);
 			path = SocialAppUITests;
+			sourceTree = "<group>";
+		};
+		354AD64F29001153009851E7 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				354AD66C29001A67009851E7 /* NetworkManagerSpy.swift */,
+				354AD66E29001BCF009851E7 /* Mock.json */,
+				354AD67029001D99009851E7 /* NetworkServiceTest.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		354AD66529001463009851E7 /* HomePost Feature */ = {
+			isa = PBXGroup;
+			children = (
+				354AD66829001564009851E7 /* HomeRepoStub.swift */,
+			);
+			path = "HomePost Feature";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -512,6 +543,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				354AD66F29001BCF009851E7 /* Mock.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -533,6 +565,7 @@
 				3514583728FF216100CEB5CE /* UILabel+Ext.swift in Sources */,
 				351456AE28FEB56F00CEB5CE /* PostModel.swift in Sources */,
 				3514579028FF0A3C00CEB5CE /* HomePostDetailVC.swift in Sources */,
+				354AD66B29001784009851E7 /* HomeRepo.swift in Sources */,
 				3514573028FEDED100CEB5CE /* Infix+Assignment.swift in Sources */,
 				3514580928FF1A3100CEB5CE /* UICollectionView+Ext.swift in Sources */,
 				351456C528FEBB9E00CEB5CE /* String+Ext.swift in Sources */,
@@ -571,6 +604,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				354AD66929001564009851E7 /* HomeRepoStub.swift in Sources */,
+				354AD66D29001A67009851E7 /* NetworkManagerSpy.swift in Sources */,
+				354AD67129001D99009851E7 /* NetworkServiceTest.swift in Sources */,
 				3515CC2828FE783F00650FD4 /* SocialAppTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

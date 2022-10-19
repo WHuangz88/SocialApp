@@ -23,4 +23,10 @@ struct User: Codable {
         }
         return "unknown"
     }
+
+    static let mocks: [Self] = [
+        .init(id: "user-1", profileImagePath: "1", firstName: "test", lastName: "1"),
+        .init(id: "user-2", profileImagePath: "2", firstName: "test", lastName: "2"),
+        .init(id: "user-3", profileImagePath: "3", firstName: "test", lastName: "3")
+    ]
 }

@@ -33,9 +33,9 @@ class HomePostVM: HomePostVMProtocol {
     private var pageRequest: PagingRequest = .init()
     private var disposeBag = DisposeBag()
 
-    private let api: NetworkService
-    init(api: NetworkService = URLSessionNetworkService()){
-        self.api = api
+    private let repo: HomeRepoProtocol
+    init(repo: HomeRepoProtocol = HomeRepo()){
+        self.repo = repo
     }
 
     func reload() {
@@ -46,10 +46,8 @@ class HomePostVM: HomePostVMProtocol {
 
     func initialLoad() {
         Single.zip(
-            self.api.request(request: HomePostAPI.fetchUsers,
-                             type: Users.self),
-            self.api.request(request: HomePostAPI.fetchPosts(page: pageRequest.page),
-                             type: Posts.self)
+            self.repo.fetchUsers(),
+            self.repo.fetchPosts(page: pageRequest.page)
         ) { [weak self] (users, posts) -> [PostDetail]? in
             self?.users = users
             return self?.generatePostCellVM(posts: posts)
@@ -67,8 +65,7 @@ class HomePostVM: HomePostVMProtocol {
     }
 
     func fetchPosts() {
-        self.api.request(request: HomePostAPI.fetchPosts(page: pageRequest.page),
-                         type: Posts.self)
+        self.repo.fetchPosts(page: pageRequest.page)
         .runInThread()
         .subscribe { [weak self] posts in
             guard let self = self else { return }
