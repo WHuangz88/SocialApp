@@ -39,14 +39,20 @@ class HomePostVC: BaseVC {
     }
 
     private func setupUI() {
-        view.addSubviews(tableView)
+        view.addSubviews(searchBar, tableView)
         setupConstraints()
         setupEvents()
     }
 
     private func setupConstraints() {
+        searchBar.snp.makeConstraints {
+            $0.top.leading.trailing
+                .equalTo(view.safeAreaLayoutGuide)
+        }
         tableView.snp.makeConstraints {
-            $0.edges.equalTo(view.safeAreaLayoutGuide)
+            $0.top.equalTo(searchBar.snp.bottom)
+            $0.leading.trailing.bottom
+                .equalTo(view.safeAreaLayoutGuide)
         }
     }
 
