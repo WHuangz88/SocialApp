@@ -23,6 +23,10 @@ class HomePostDetailVC: BaseVC {
             return cell
         }
     private lazy var separator = LineSeparator()
+    private lazy var dynamicStack = VStack {
+        contentImage
+        collectionView
+    }
 
     let viewModel: HomePostDetailVM
     init(viewModel: HomePostDetailVM) {
@@ -49,8 +53,8 @@ class HomePostDetailVC: BaseVC {
         setupCollection()
         createScrollView()
         contentWrapperScrollView
-            .addSubviews(postContent, contentImage,
-                         collectionView, separator)
+            .addSubviews(postContent, dynamicStack)
+        dynamicStack.addSubview(separator)
         setupConstraints()
         setupEvents()
     }
@@ -66,21 +70,18 @@ class HomePostDetailVC: BaseVC {
         }
 
         contentImage.snp.makeConstraints {
-            $0.top.equalTo(postContent.snp.bottom)
-            $0.leading.trailing.equalTo(postContent)
             $0.height.equalTo(300)
         }
 
-        collectionView.snp.makeConstraints {
-            $0.top.equalTo(contentImage.snp.bottom)
+        dynamicStack.snp.makeConstraints {
+            $0.top.equalTo(postContent.snp.bottom)
             $0.leading.trailing.equalTo(postContent)
-            $0.height.equalTo(30)
             $0.bottom.lessThanOrEqualToSuperview()
-                .offset(-16)
+                .offset(-8)
         }
 
         separator.snp.makeConstraints {
-            $0.top.equalTo(collectionView.snp.bottom)
+            $0.top.equalTo(dynamicStack.snp.bottom)
             $0.leading.trailing.equalTo(postContent)
         }
     }
@@ -99,10 +100,18 @@ class HomePostDetailVC: BaseVC {
             }).disposed(by: self.disposeBag)
 
         self.viewModel.usersName.asDriver()
-            .drive(onNext: { [weak self] _ in
+            .drive(onNext: { [weak self] users in
+                self?.toggleCollectionView(!users.isEmpty)
                 self?.collectionView.reloadData()
             })
             .disposed(by: self.disposeBag)
+    }
+
+    private func toggleCollectionView(_ toggle: Bool) {
+        collectionView.snp.makeConstraints {
+            $0.height.equalTo(toggle ? 30 : 0)
+        }
+        self.separator.isHidden = !toggle
     }
 
 }
