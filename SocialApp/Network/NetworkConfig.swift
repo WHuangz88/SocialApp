@@ -15,11 +15,6 @@ enum HTTPMethod: String {
     case patch
 }
 
-enum ResponseDataType {
-    case Data
-    case JSON
-}
-
 enum Encoding: String {
     case URL
     case JSON
@@ -70,7 +65,7 @@ struct PagingRequest {
     }
 
     mutating func resetPage() {
-        self.page = 1
+        self.page = 0
     }
 }
 

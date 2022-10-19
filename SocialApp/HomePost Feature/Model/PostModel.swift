@@ -38,7 +38,7 @@ struct Post: Decodable {
 }
 
 
-struct PostDetail {
+struct PostDetail: Equatable {
     let id: String
     let name: String
     let date: String

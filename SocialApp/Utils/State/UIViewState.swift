@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum UIViewState {
+public enum UIViewState: Equatable {
     case loading
     case empty
     case errorMessage(String?)

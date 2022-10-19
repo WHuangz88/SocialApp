@@ -1,5 +1,5 @@
 //
-//  HomeRepoStub.swift
+//  HomePostRepoStub.swift
 //  SocialAppTests
 //
 //  Created by William Huang on 19/10/22.
@@ -8,7 +8,7 @@
 @testable import SocialApp
 import RxSwift
 
-struct HomeRepoStub: HomeRepoProtocol {
+class HomePostRepoStub: HomeRepoProtocol {
 
     enum PossibleResults {
         case success

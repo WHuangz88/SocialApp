@@ -11,7 +11,7 @@ import RxSwift
 
 protocol HomePostVMProtocol {
     var postCellVMs: BehaviorRelay<[PostDetail]> { get }
-    var viewState: PublishSubject<UIViewState> { get }
+    var viewState: BehaviorRelay<UIViewState> { get }
     var users: Users { get }
 
     func initialLoad()
@@ -25,13 +25,13 @@ class HomePostVM: HomePostVMProtocol {
 
     // Views Binding
     var originalPosts = [PostDetail]()
-    var postCellVMs: BehaviorRelay<[PostDetail]> = .init(value: [])
-    var viewState: PublishSubject<UIViewState> = .init()
+    let postCellVMs: BehaviorRelay<[PostDetail]> = .init(value: [])
+    let viewState: BehaviorRelay<UIViewState> = .init(value: .none)
     var users: Users = []
 
-    private var isSearching: Bool = false
-    private var pageRequest: PagingRequest = .init()
-    private var disposeBag = DisposeBag()
+    var isSearching: Bool = false
+    var pageRequest: PagingRequest = .init()
+    var disposeBag = DisposeBag()
 
     private let repo: HomeRepoProtocol
     init(repo: HomeRepoProtocol = HomeRepo()){
@@ -40,7 +40,7 @@ class HomePostVM: HomePostVMProtocol {
 
     func reload() {
         self.pageRequest.resetPage()
-        self.postCellVMs = .init(value: [])
+        self.isSearching = false
         self.initialLoad()
     }
 
@@ -50,26 +50,26 @@ class HomePostVM: HomePostVMProtocol {
             self.repo.fetchPosts(page: pageRequest.page)
         ) { [weak self] (users, posts) -> [PostDetail]? in
             self?.users = users
-            return self?.generatePostCellVM(posts: posts)
+            return self?.generatePostDetail(posts: posts)
         }
-        .runInThread()
+        .observe(on: MainScheduler.instance)
         .subscribe { [weak self] vms in
             guard let self = self, let vms = vms else { return }
             self.postCellVMs.accept(vms)
             self.originalPosts = vms
 
-            self.viewState.onNext(.finish)
+            self.viewState.accept(.finish)
         } onFailure: { [weak self] error in
-            self?.viewState.onNext(.errorMessage(error.localizedDescription))
+            self?.viewState.accept(.errorMessage(error.mapToNetworkErrorMsg))
         }.disposed(by: self.disposeBag)
     }
 
     func fetchPosts() {
         self.repo.fetchPosts(page: pageRequest.page)
-        .runInThread()
+        .observe(on: MainScheduler.instance)
         .subscribe { [weak self] posts in
             guard let self = self else { return }
-            let postItems = self.generatePostCellVM(posts: posts)
+            let postItems = self.generatePostDetail(posts: posts)
 
             if self.pageRequest.isFirstPage() {
                 self.postCellVMs.accept(postItems)
@@ -80,7 +80,7 @@ class HomePostVM: HomePostVMProtocol {
             }
             self.originalPosts = self.postCellVMs.value
         } onFailure: { [weak self] error in
-            self?.viewState.onNext(.errorMessage(error.localizedDescription))
+            self?.viewState.accept(.errorMessage(error.mapToNetworkErrorMsg))
         }.disposed(by: self.disposeBag)
     }
 
@@ -120,7 +120,7 @@ class HomePostVM: HomePostVMProtocol {
     }
 
     /// Object Mapper
-    private func generatePostCellVM(posts: Posts) -> [PostDetail] {
+    private func generatePostDetail(posts: Posts) -> [PostDetail] {
         return posts.reduce(into: [PostDetail]()) { [weak self] (result, post) in
             let user = self?.users.first { $0.id == post.ownerID }
             let vm = PostDetail.init(id: post.id,

@@ -68,6 +68,7 @@ class HomePostVC: BaseVC {
             .disposed(by: disposeBag)
 
         self.viewModel.viewState.subscribe(onNext: { [weak self] state in
+            guard state != .none else { return }
             self?.refreshControl.endRefreshing()
             switch state {
             case.errorMessage(let msg):

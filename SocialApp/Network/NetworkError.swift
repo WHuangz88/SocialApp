@@ -49,3 +49,12 @@ public enum NetworkError: Error {
         return trimmedMessage
     }
 }
+
+extension Error {
+    var mapToNetworkErrorMsg: String {
+        if let err = self as? NetworkError {
+            return err.localizedDescription
+        }
+        return "unknown"
+    }
+}
