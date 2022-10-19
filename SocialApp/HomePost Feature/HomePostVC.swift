@@ -69,10 +69,12 @@ class HomePostVC: BaseVC {
         }).disposed(by: self.disposeBag)
 
         let section = self.viewModel.postCellVMs.map { (data) -> TableSectionViewModelProtocol in
-            return TableSectionViewModel(entries: data) { (_, vm, cell: PostCell) in
+            return TableSectionViewModel(entries: data) { [weak self] (_, vm, cell: PostCell) in
                 cell.bindData(vm: vm)
-            } onSelect: { _, data in
-
+            } onSelect: { [weak self] _, data in
+                guard let self = self else { return }
+                let vc = HomePostDetailVC(viewModel: .init(postDetail: data, users: self.viewModel.users))
+                self.navigationController?.pushViewController(vc, animated: true)
             }.asProtocol
         }
 

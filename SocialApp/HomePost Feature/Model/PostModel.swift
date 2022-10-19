@@ -23,3 +23,14 @@ struct Post: Decodable {
         case tagIDS = "tagIds"
     }
 }
+
+
+struct PostDetail {
+    let id: String
+    let name: String
+    let date: String
+    let textContent: String
+    let mediaContentPath: String
+    let profilePic: String
+    let tagIds: [String]
+}

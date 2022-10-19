@@ -10,8 +10,9 @@ import RxRelay
 import RxSwift
 
 protocol HomePostVMProtocol {
-    var postCellVMs: BehaviorRelay<[PostCellVM]> { get }
+    var postCellVMs: BehaviorRelay<[PostDetail]> { get }
     var viewState: PublishSubject<UIViewState> { get }
+    var users: Users { get }
 
     func initialLoad()
     func reload()
@@ -22,10 +23,10 @@ protocol HomePostVMProtocol {
 class HomePostVM: HomePostVMProtocol {
 
     // Views Binding
-    var postCellVMs: BehaviorRelay<[PostCellVM]> = .init(value: [])
+    var postCellVMs: BehaviorRelay<[PostDetail]> = .init(value: [])
     var viewState: PublishSubject<UIViewState> = .init()
-
-    private var users: BehaviorRelay<Users> = .init(value: [])
+    var users: Users = []
+    
     private var pageRequest: PagingRequest = .init()
     private var disposeBag = DisposeBag()
 
@@ -46,8 +47,8 @@ class HomePostVM: HomePostVMProtocol {
                              type: Users.self),
             self.api.request(request: HomePostAPI.fetchPosts(page: pageRequest.page),
                              type: Posts.self)
-        ) { [weak self] (users, posts) -> [PostCellVM]? in
-            self?.users = .init(value: users)
+        ) { [weak self] (users, posts) -> [PostDetail]? in
+            self?.users = users
             return self?.generatePostCellVM(posts: posts)
         }
         .runInThread()
@@ -89,13 +90,16 @@ class HomePostVM: HomePostVMProtocol {
     }
 
     /// Object Mapper
-    private func generatePostCellVM(posts: Posts) -> [PostCellVM] {
-        return posts.reduce(into: [PostCellVM]()) { [weak self] (result, post) in
-            let user = self?.users.value.first { $0.id == post.ownerID }
-            let vm = PostCellVM.init(name: user?.fullName ?? "",
+    private func generatePostCellVM(posts: Posts) -> [PostDetail] {
+        return posts.reduce(into: [PostDetail]()) { [weak self] (result, post) in
+            let user = self?.users.first { $0.id == post.ownerID }
+            let vm = PostDetail.init(id: post.id,
+                                     name: user?.fullName ?? "",
                                      date: post.createdDate ?? "",
-                                     content: post.textContent ?? "",
-                                     profilePic: user?.profileImagePath ?? "")
+                                     textContent: post.textContent ?? "",
+                                     mediaContentPath: post.mediaContentPath ?? "",
+                                     profilePic: user?.profileImagePath ?? "",
+                                     tagIds: post.tagIDS ?? [])
             result.append(vm)
         }
     }

@@ -28,12 +28,12 @@ class PostCell: UITableViewCell {
         setupConstraint()
     }
 
-    func bindData(vm: PostCellVM) {
+    func bindData(vm: PostDetail) {
         self.card.configure(config: .init(contentLines: 2,
                                           ownerName: vm.name,
                                           date: vm.date,
                                           profilePic: vm.profilePic,
-                                          content: vm.content))
+                                          content: vm.textContent))
     }
 
     private func setupConstraint() {
@@ -46,11 +46,4 @@ class PostCell: UITableViewCell {
             $0.edges.equalToSuperview()
         }
     }
-}
-
-struct PostCellVM {
-    let name: String
-    let date: String
-    let content: String
-    let profilePic: String
 }
