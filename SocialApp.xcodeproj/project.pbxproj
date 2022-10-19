@@ -35,6 +35,15 @@
 		3514574E28FEE36B00CEB5CE /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3514574D28FEE36B00CEB5CE /* UIView+Ext.swift */; };
 		3514577728FEF55C00CEB5CE /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 3514577628FEF55C00CEB5CE /* SDWebImage */; };
 		3514578C28FEFDD100CEB5CE /* RxSwift+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3514578B28FEFDD100CEB5CE /* RxSwift+Ext.swift */; };
+		3514579028FF0A3C00CEB5CE /* HomePostDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3514578F28FF0A3C00CEB5CE /* HomePostDetailVC.swift */; };
+		3514579228FF0A4300CEB5CE /* HomePostDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3514579128FF0A4300CEB5CE /* HomePostDetailVM.swift */; };
+		351457A728FF0B7A00CEB5CE /* BaseCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351457A628FF0B7900CEB5CE /* BaseCollectionViewModel.swift */; };
+		3514580928FF1A3100CEB5CE /* UICollectionView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3514580828FF1A3000CEB5CE /* UICollectionView+Ext.swift */; };
+		3514580B28FF1B3600CEB5CE /* TextCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3514580A28FF1B3500CEB5CE /* TextCollectionCell.swift */; };
+		3514583428FF208800CEB5CE /* NSMutableAttributedString+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3514583328FF208700CEB5CE /* NSMutableAttributedString+Ext.swift */; };
+		3514583728FF216100CEB5CE /* UILabel+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3514583628FF216100CEB5CE /* UILabel+Ext.swift */; };
+		3514584F28FF9ACD00CEB5CE /* LinkResponsiveTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3514584E28FF9ACD00CEB5CE /* LinkResponsiveTextView.swift */; };
+		3514586428FF9B7200CEB5CE /* SFSafariVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3514586328FF9B7200CEB5CE /* SFSafariVC.swift */; };
 		3515CC1128FE783A00650FD4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3515CC1028FE783A00650FD4 /* AppDelegate.swift */; };
 		3515CC1328FE783A00650FD4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3515CC1228FE783A00650FD4 /* SceneDelegate.swift */; };
 		3515CC1A28FE783E00650FD4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3515CC1928FE783E00650FD4 /* Assets.xcassets */; };
@@ -86,6 +95,15 @@
 		3514574A28FEE21C00CEB5CE /* LineSeparator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineSeparator.swift; sourceTree = "<group>"; };
 		3514574D28FEE36B00CEB5CE /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
 		3514578B28FEFDD100CEB5CE /* RxSwift+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RxSwift+Ext.swift"; sourceTree = "<group>"; };
+		3514578F28FF0A3C00CEB5CE /* HomePostDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePostDetailVC.swift; sourceTree = "<group>"; };
+		3514579128FF0A4300CEB5CE /* HomePostDetailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePostDetailVM.swift; sourceTree = "<group>"; };
+		351457A628FF0B7900CEB5CE /* BaseCollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewModel.swift; sourceTree = "<group>"; };
+		3514580828FF1A3000CEB5CE /* UICollectionView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Ext.swift"; sourceTree = "<group>"; };
+		3514580A28FF1B3500CEB5CE /* TextCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextCollectionCell.swift; sourceTree = "<group>"; };
+		3514583328FF208700CEB5CE /* NSMutableAttributedString+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+Ext.swift"; sourceTree = "<group>"; };
+		3514583628FF216100CEB5CE /* UILabel+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Ext.swift"; sourceTree = "<group>"; };
+		3514584E28FF9ACD00CEB5CE /* LinkResponsiveTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkResponsiveTextView.swift; sourceTree = "<group>"; };
+		3514586328FF9B7200CEB5CE /* SFSafariVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSafariVC.swift; sourceTree = "<group>"; };
 		3515CC0D28FE783A00650FD4 /* SocialApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SocialApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3515CC1028FE783A00650FD4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3515CC1228FE783A00650FD4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -151,6 +169,7 @@
 		3514569428FEB16A00CEB5CE /* HomePost Feature */ = {
 			isa = PBXGroup;
 			children = (
+				3514578E28FF0A3300CEB5CE /* Detail */,
 				3514574728FEE14E00CEB5CE /* Views */,
 				351456C628FEBBF600CEB5CE /* Repository */,
 				351456AC28FEB56300CEB5CE /* Model */,
@@ -172,7 +191,6 @@
 		351456BE28FEBA5B00CEB5CE /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				3514574C28FEE36000CEB5CE /* UIView */,
 				351456FA28FEC42600CEB5CE /* UIKit */,
 				351456E928FEC10800CEB5CE /* State */,
 				351456E528FEC08400CEB5CE /* RxSwift */,
@@ -205,6 +223,8 @@
 				3514572C28FEDE1200CEB5CE /* Views */,
 				351456CC28FEBCAB00CEB5CE /* SearchComponents.swift */,
 				3514572A28FEDD9700CEB5CE /* BaseVC.swift */,
+				351457A628FF0B7900CEB5CE /* BaseCollectionViewModel.swift */,
+				3514586328FF9B7200CEB5CE /* SFSafariVC.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -237,18 +257,22 @@
 		351456FA28FEC42600CEB5CE /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
+				3514583528FF215300CEB5CE /* UILabel */,
+				3514583228FF207800CEB5CE /* NSAttributed */,
+				3514574C28FEE36000CEB5CE /* UIView */,
 				3514573128FEDF3200CEB5CE /* Stack */,
-				351456FB28FEC42B00CEB5CE /* UITableView */,
+				351456FB28FEC42B00CEB5CE /* Scroll */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
 		};
-		351456FB28FEC42B00CEB5CE /* UITableView */ = {
+		351456FB28FEC42B00CEB5CE /* Scroll */ = {
 			isa = PBXGroup;
 			children = (
 				351456FC28FEC43A00CEB5CE /* UITableView+Ext.swift */,
+				3514580828FF1A3000CEB5CE /* UICollectionView+Ext.swift */,
 			);
-			path = UITableView;
+			path = Scroll;
 			sourceTree = "<group>";
 		};
 		3514572C28FEDE1200CEB5CE /* Views */ = {
@@ -256,6 +280,8 @@
 			children = (
 				3514572D28FEDE3B00CEB5CE /* PostContentCard.swift */,
 				3514574A28FEE21C00CEB5CE /* LineSeparator.swift */,
+				3514580A28FF1B3500CEB5CE /* TextCollectionCell.swift */,
+				3514584E28FF9ACD00CEB5CE /* LinkResponsiveTextView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -282,6 +308,31 @@
 				3514574D28FEE36B00CEB5CE /* UIView+Ext.swift */,
 			);
 			path = UIView;
+			sourceTree = "<group>";
+		};
+		3514578E28FF0A3300CEB5CE /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				3514578F28FF0A3C00CEB5CE /* HomePostDetailVC.swift */,
+				3514579128FF0A4300CEB5CE /* HomePostDetailVM.swift */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		3514583228FF207800CEB5CE /* NSAttributed */ = {
+			isa = PBXGroup;
+			children = (
+				3514583328FF208700CEB5CE /* NSMutableAttributedString+Ext.swift */,
+			);
+			path = NSAttributed;
+			sourceTree = "<group>";
+		};
+		3514583528FF215300CEB5CE /* UILabel */ = {
+			isa = PBXGroup;
+			children = (
+				3514583628FF216100CEB5CE /* UILabel+Ext.swift */,
+			);
+			path = UILabel;
 			sourceTree = "<group>";
 		};
 		3515CC0428FE783A00650FD4 = {
@@ -479,17 +530,26 @@
 			buildActionMask = 2147483647;
 			files = (
 				3514569828FEB2C200CEB5CE /* NetworkManager.swift in Sources */,
+				3514583728FF216100CEB5CE /* UILabel+Ext.swift in Sources */,
 				351456AE28FEB56F00CEB5CE /* PostModel.swift in Sources */,
+				3514579028FF0A3C00CEB5CE /* HomePostDetailVC.swift in Sources */,
 				3514573028FEDED100CEB5CE /* Infix+Assignment.swift in Sources */,
+				3514580928FF1A3100CEB5CE /* UICollectionView+Ext.swift in Sources */,
 				351456C528FEBB9E00CEB5CE /* String+Ext.swift in Sources */,
+				3514583428FF208800CEB5CE /* NSMutableAttributedString+Ext.swift in Sources */,
 				3514574E28FEE36B00CEB5CE /* UIView+Ext.swift in Sources */,
 				351456C328FEBA7100CEB5CE /* Date+Ext.swift in Sources */,
+				3514584F28FF9ACD00CEB5CE /* LinkResponsiveTextView.swift in Sources */,
 				3514568028FEA71400CEB5CE /* NetworkError.swift in Sources */,
 				3514567A28FEA44F00CEB5CE /* NetworkConfig.swift in Sources */,
 				351456E228FEBDA200CEB5CE /* HomePostVM.swift in Sources */,
+				3514580B28FF1B3600CEB5CE /* TextCollectionCell.swift in Sources */,
+				3514579228FF0A4300CEB5CE /* HomePostDetailVM.swift in Sources */,
 				3514569628FEB17200CEB5CE /* HomePostAPI.swift in Sources */,
 				3514573328FEDF3800CEB5CE /* Stack.swift in Sources */,
+				3514586428FF9B7200CEB5CE /* SFSafariVC.swift in Sources */,
 				3514578C28FEFDD100CEB5CE /* RxSwift+Ext.swift in Sources */,
+				351457A728FF0B7A00CEB5CE /* BaseCollectionViewModel.swift in Sources */,
 				3514567C28FEA46100CEB5CE /* APIDataProtocol.swift in Sources */,
 				351456C928FEBC0B00CEB5CE /* HomePostVC.swift in Sources */,
 				3514572E28FEDE3B00CEB5CE /* PostContentCard.swift in Sources */,

@@ -10,7 +10,12 @@ import UIKit
 class PostCell: UITableViewCell {
 
     private lazy var separator = LineSeparator()
-    private lazy var card = PostContentCard()
+    private lazy var card = PostContentCard() ~!~ {
+        $0.openInAppBrowser = { [unowned self] url in
+            self.openInAppBrowser?(url)
+        }
+    }
+    var openInAppBrowser: ((URL) -> Void)?
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

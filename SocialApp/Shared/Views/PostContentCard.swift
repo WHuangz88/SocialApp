@@ -38,12 +38,19 @@ class PostContentCard: UIView {
         $0.numberOfLines = 1
     }
 
-    private lazy var contentLbl = UILabel() ~!~ {
+    private lazy var contentLbl = LinkResponsiveTextView() ~!~ {
         $0.font = UIFont.systemFont(ofSize: 12)
         $0.textColor = UIColor.black
         $0.textAlignment = .left
-        $0.numberOfLines = 2
+        $0.textContainer.maximumNumberOfLines = 2
+        $0.backgroundColor = .white
+        $0.textContainerInset = .zero
+        $0.textContainer.lineFragmentPadding = 0
+        $0.delegate = self
+        $0.sizeToFit()
     }
+
+    var openInAppBrowser: ((URL) -> Void)?
 
     private lazy var stackView = VStack {
         HStack {
@@ -80,13 +87,32 @@ class PostContentCard: UIView {
         self.ownerLbl.text = config.ownerName
         self.dateLbl.text = config.date.convertDate(toFormat: .normal)
         self.contentLbl.text = config.content
-        self.contentLbl.numberOfLines = config.contentLines
+        self.contentLbl.textContainer.maximumNumberOfLines = config.contentLines
         self.iconView.sd_setImage(with: URL(string: config.profilePic)) { [iconView] _,_,_,_ in
             iconView.backgroundColor = .clear
+        }
+
+        if let links = self.contentLbl.detectLinks() {
+            self.contentLbl.attributedText = NSMutableAttributedString
+                .attributeForFont(fullText: config.content,
+                                  normalFont: .systemFont(ofSize: 12),
+                                  normalColor: .black,
+                                  textChecking: links)
+
+
         }
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+}
+
+
+extension PostContentCard: UITextViewDelegate {
+    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+        openInAppBrowser?(URL)
+        return false
     }
 }

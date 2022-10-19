@@ -71,6 +71,9 @@ class HomePostVC: BaseVC {
         let section = self.viewModel.postCellVMs.map { (data) -> TableSectionViewModelProtocol in
             return TableSectionViewModel(entries: data) { [weak self] (_, vm, cell: PostCell) in
                 cell.bindData(vm: vm)
+                cell.openInAppBrowser = { [weak self] url in
+                    self?.present(SFSafariVC(url: url), animated: true)
+                }
             } onSelect: { [weak self] _, data in
                 guard let self = self else { return }
                 let vc = HomePostDetailVC(viewModel: .init(postDetail: data, users: self.viewModel.users))
