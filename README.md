@@ -16,6 +16,7 @@ After cloning the project,
 
 
 ### Built with
+- **Coverage** >= 80
 - **Swift 5** compiled on XCode 13.4.1
 - **MVVM** Model-View-ViewModel
 - **RxSwift** for reactive data binding
