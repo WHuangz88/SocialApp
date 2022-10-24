@@ -61,6 +61,7 @@ struct PagingRequest {
     }
 
     mutating func loadNextPage() {
+        guard !isMaxPage() else { return }
         self.page += 1
     }
 

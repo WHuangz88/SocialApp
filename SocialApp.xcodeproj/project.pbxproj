@@ -57,6 +57,9 @@
 		354AD67129001D99009851E7 /* NetworkServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354AD67029001D99009851E7 /* NetworkServiceTest.swift */; };
 		354AD686290050DD009851E7 /* HomePostTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354AD685290050DD009851E7 /* HomePostTest.swift */; };
 		354AD69B2900650A009851E7 /* HomeModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354AD69A2900650A009851E7 /* HomeModelTest.swift */; };
+		35CA31B4290655300020E324 /* HelperTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CA31B3290655300020E324 /* HelperTest.swift */; };
+		35CA31B8290659A10020E324 /* NetworkTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CA31B7290659A10020E324 /* NetworkTest.swift */; };
+		35CA31BA29065DFD0020E324 /* HomePostDetailTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CA31B929065DFD0020E324 /* HomePostDetailTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -127,6 +130,9 @@
 		354AD67029001D99009851E7 /* NetworkServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceTest.swift; sourceTree = "<group>"; };
 		354AD685290050DD009851E7 /* HomePostTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePostTest.swift; sourceTree = "<group>"; };
 		354AD69A2900650A009851E7 /* HomeModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModelTest.swift; sourceTree = "<group>"; };
+		35CA31B3290655300020E324 /* HelperTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperTest.swift; sourceTree = "<group>"; };
+		35CA31B7290659A10020E324 /* NetworkTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkTest.swift; sourceTree = "<group>"; };
+		35CA31B929065DFD0020E324 /* HomePostDetailTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePostDetailTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -386,6 +392,7 @@
 		3515CC2628FE783F00650FD4 /* SocialAppTests */ = {
 			isa = PBXGroup;
 			children = (
+				35CA31B2290655240020E324 /* Utils */,
 				354AD66529001463009851E7 /* HomePost Feature */,
 				354AD64F29001153009851E7 /* Network */,
 				3515CC2728FE783F00650FD4 /* SocialAppTests.swift */,
@@ -408,6 +415,7 @@
 				354AD66C29001A67009851E7 /* NetworkManagerSpy.swift */,
 				354AD66E29001BCF009851E7 /* Mock.json */,
 				354AD67029001D99009851E7 /* NetworkServiceTest.swift */,
+				35CA31B7290659A10020E324 /* NetworkTest.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -418,8 +426,17 @@
 				354AD66829001564009851E7 /* HomePostRepoStub.swift */,
 				354AD685290050DD009851E7 /* HomePostTest.swift */,
 				354AD69A2900650A009851E7 /* HomeModelTest.swift */,
+				35CA31B929065DFD0020E324 /* HomePostDetailTest.swift */,
 			);
 			path = "HomePost Feature";
+			sourceTree = "<group>";
+		};
+		35CA31B2290655240020E324 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				35CA31B3290655300020E324 /* HelperTest.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -608,8 +625,11 @@
 			files = (
 				354AD66929001564009851E7 /* HomePostRepoStub.swift in Sources */,
 				354AD686290050DD009851E7 /* HomePostTest.swift in Sources */,
+				35CA31B8290659A10020E324 /* NetworkTest.swift in Sources */,
+				35CA31BA29065DFD0020E324 /* HomePostDetailTest.swift in Sources */,
 				354AD69B2900650A009851E7 /* HomeModelTest.swift in Sources */,
 				354AD66D29001A67009851E7 /* NetworkManagerSpy.swift in Sources */,
+				35CA31B4290655300020E324 /* HelperTest.swift in Sources */,
 				354AD67129001D99009851E7 /* NetworkServiceTest.swift in Sources */,
 				3515CC2828FE783F00650FD4 /* SocialAppTests.swift in Sources */,
 			);

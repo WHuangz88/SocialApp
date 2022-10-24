@@ -47,7 +47,7 @@ final class URLSessionNetworkService: NetworkService {
                         let apiResponseModel = try jsonDecoder.decode(T.self, from: receivedData)
                         observer(.success(apiResponseModel))
                     } catch {
-                        observer(.failure(NetworkError.unableToDecodeResponseData(errorDescription: error.localizedDescription)))
+                        observer(.failure(NetworkError.unableToDecodeResponseData))
                     }
                 case .failure(let error):
                     observer(.failure(error))

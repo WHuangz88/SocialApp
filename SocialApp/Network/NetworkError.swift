@@ -15,7 +15,7 @@ public enum NetworkError: Error {
     case badRequest
     case failed
     case noResponseData
-    case unableToDecodeResponseData(errorDescription: String)
+    case unableToDecodeResponseData
     case other(message: String?)
 
     var localizedDescription: String{
