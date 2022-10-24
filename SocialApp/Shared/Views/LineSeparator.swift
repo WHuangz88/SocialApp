@@ -9,8 +9,8 @@ import UIKit
 import SnapKit
 
 class LineSeparator: UIView {
-    init(forHeight: Int = 2, forColor: UIColor = .gray) {
-        super.init(frame: .zero)
+    init(frame: CGRect = .zero, forHeight: Int = 2, forColor: UIColor = .gray) {
+        super.init(frame: frame)
         setupUI(height: forHeight, color: forColor)
     }
 

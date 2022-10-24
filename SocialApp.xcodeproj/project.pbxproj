@@ -60,6 +60,8 @@
 		35CA31B4290655300020E324 /* HelperTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CA31B3290655300020E324 /* HelperTest.swift */; };
 		35CA31B8290659A10020E324 /* NetworkTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CA31B7290659A10020E324 /* NetworkTest.swift */; };
 		35CA31BA29065DFD0020E324 /* HomePostDetailTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CA31B929065DFD0020E324 /* HomePostDetailTest.swift */; };
+		35CA31CA290665090020E324 /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = 35CA31C9290665090020E324 /* SnapshotTesting */; };
+		35CA31D1290668DF0020E324 /* HomePostVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CA31D0290668DF0020E324 /* HomePostVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -133,6 +135,7 @@
 		35CA31B3290655300020E324 /* HelperTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperTest.swift; sourceTree = "<group>"; };
 		35CA31B7290659A10020E324 /* NetworkTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkTest.swift; sourceTree = "<group>"; };
 		35CA31B929065DFD0020E324 /* HomePostDetailTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePostDetailTest.swift; sourceTree = "<group>"; };
+		35CA31D0290668DF0020E324 /* HomePostVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePostVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +154,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35CA31CA290665090020E324 /* SnapshotTesting in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -425,6 +429,7 @@
 			children = (
 				354AD66829001564009851E7 /* HomePostRepoStub.swift */,
 				354AD685290050DD009851E7 /* HomePostTest.swift */,
+				35CA31D0290668DF0020E324 /* HomePostVC.swift */,
 				354AD69A2900650A009851E7 /* HomeModelTest.swift */,
 				35CA31B929065DFD0020E324 /* HomePostDetailTest.swift */,
 			);
@@ -479,6 +484,9 @@
 				3515CC2528FE783F00650FD4 /* PBXTargetDependency */,
 			);
 			name = SocialAppTests;
+			packageProductDependencies = (
+				35CA31C9290665090020E324 /* SnapshotTesting */,
+			);
 			productName = SocialAppTests;
 			productReference = 3515CC2328FE783F00650FD4 /* SocialAppTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -497,6 +505,8 @@
 				3515CC2F28FE783F00650FD4 /* PBXTargetDependency */,
 			);
 			name = SocialAppUITests;
+			packageProductDependencies = (
+			);
 			productName = SocialAppUITests;
 			productReference = 3515CC2D28FE783F00650FD4 /* SocialAppUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
@@ -537,6 +547,7 @@
 				3514570F28FEC5F400CEB5CE /* XCRemoteSwiftPackageReference "RxDataSources" */,
 				3514571428FEC60B00CEB5CE /* XCRemoteSwiftPackageReference "SnapKit" */,
 				3514577528FEF55C00CEB5CE /* XCRemoteSwiftPackageReference "SDWebImage" */,
+				35CA31C8290665090020E324 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */,
 			);
 			productRefGroup = 3515CC0E28FE783A00650FD4 /* Products */;
 			projectDirPath = "";
@@ -624,6 +635,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				354AD66929001564009851E7 /* HomePostRepoStub.swift in Sources */,
+				35CA31D1290668DF0020E324 /* HomePostVC.swift in Sources */,
 				354AD686290050DD009851E7 /* HomePostTest.swift in Sources */,
 				35CA31B8290659A10020E324 /* NetworkTest.swift in Sources */,
 				35CA31BA29065DFD0020E324 /* HomePostDetailTest.swift in Sources */,
@@ -983,6 +995,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		35CA31C8290665090020E324 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-snapshot-testing";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1005,6 +1025,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 3514577528FEF55C00CEB5CE /* XCRemoteSwiftPackageReference "SDWebImage" */;
 			productName = SDWebImage;
+		};
+		35CA31C9290665090020E324 /* SnapshotTesting */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 35CA31C8290665090020E324 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
+			productName = SnapshotTesting;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
